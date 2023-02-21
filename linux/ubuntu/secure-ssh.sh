@@ -15,7 +15,7 @@ if  [[ !  -f "/home/shapiro/SYS265/linux/public-keys/id_rsa.pub" ]]
 then
   git pull
 else
-  cp /home/shapiro/SYS265/linux/public-keys/id_rsa.pub /home/$username/.ssh/authorized_keys/id_rsa.pub
+  cp /home/shapiro/SYS265/linux/public-keys/id_rsa.pub /home/$username/.ssh/authorized-keys/id_rsa.pub
 fi
 exit
 if [[ grep -Fxq "#PermitRootLogin yes" /etc/ssh/sshd_config ]]
