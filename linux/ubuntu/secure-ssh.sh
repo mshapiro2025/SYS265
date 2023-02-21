@@ -15,7 +15,7 @@ chmod 600 /home/$username/.ssh/authorized_keys
 chown -R $username:$username /home/$username/.ssh
 if  [[ !  -f "/home/shapiro/SYS265/public-keys/id_rsa.pub" ]]
 then
-  git clone https://github.com/mshapiro2025/SYS265/linux/public-keys
+  git clone https://github.com/mshapiro2025/SYS265/linux/public-keys/id_rsa.pub
 else
   cp home/shapiro/SYS265/linux/public-keys/id_rsa.pub /home/$username/.ssh/authorized_keys
 fi
