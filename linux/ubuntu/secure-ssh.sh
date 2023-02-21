@@ -5,11 +5,14 @@
 # removes roots ability to ssh in
 
 read -p "Input the username for your new SSH user: " username
-useradd -m -s /bin/bash $username
-#mkdir /home/$username/.ssh
-#chmod 700 /home/$username/.ssh
-#chmod 600 /home/$username/.ssh/authorized_keys
-#chown -R $username:$username /home/$username/.ssh
+if grep $username /etc/passwd
+  useradd -m -s /bin/bash $username
+else
+  echo "Sorry, that username is already taken. Try again!"
+  read -p "Input the username for your new SSH user: " username
+  useradd -m -s /bin/bash $username
+fi
+
 if  [[ !  -f "/home/shapiro/SYS265/linux/public-keys/id_rsa.pub" ]]
 then
   git pull
@@ -25,8 +28,7 @@ else
   chmod 600 /home/$username/.ssh/authorized_keys
   chown -R $username:$username /home/$username/.ssh
 fi
-#chmod 600 /home/$username/.ssh/authorized_keys/id_rsa.pub
-#chown $username:$username /home/$username/.ssh/authorized_keys/id_rsa.pub
+
 if grep -Fx "#PermitRootLogin yes" /etc/ssh/sshd_config
 then
   sed -i "s/#PermitRootLogin yes/PermitRootLogin no/I" /etc/ssh/sshd_config
