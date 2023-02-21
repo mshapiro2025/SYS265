@@ -23,5 +23,4 @@ if grep -Fx "#PermitRootLogin yes" /etc/ssh/sshd_config
 then
   sed -i "s/#PermitRootLogin yes/PermitRootLogin no/I" /etc/ssh/sshd_config
   systemctl restart sshd
-else
 fi
