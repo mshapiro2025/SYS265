@@ -6,16 +6,12 @@
 
 read -p "Input the username for your new SSH user: " username
 useradd -m $username
-cd /home/$username
-mkdir ".ssh"
-cd ".ssh"
-mkdir authorized-keys
 chmod 700 /home/$username/.ssh
 chmod 600 /home/$username/.ssh/authorized_keys
 chown -R $username:$username /home/$username/.ssh
 if  [[ !  -f "/home/shapiro/SYS265/public-keys/id_rsa.pub" ]]
 then
-  git clone https://github.com/mshapiro2025/SYS265/linux/public-keys/id_rsa.pub
+  git pull
 else
   cp home/shapiro/SYS265/linux/public-keys/id_rsa.pub /home/$username/.ssh/authorized_keys
 fi
