@@ -5,11 +5,10 @@
 # removes roots ability to ssh in
 
 read -p "Input the username for your new SSH user: " username
-read -p "Enter the password for your new SSH user: " password
 useradd -m $username
 cd /home/$username
-mkdir .ssh
-cd .ssh
+mkdir ".ssh"
+cd ".ssh"
 mkdir authorized-keys
 chmod 700 /home/$username/.ssh
 chmod 600 /home/$username/.ssh/authorized_keys
