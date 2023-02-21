@@ -18,7 +18,7 @@ then
 else
   cp /home/shapiro/SYS265/linux/public-keys/id_rsa.pub /home/$username/.ssh/authorized-keys/id_rsa.pub
 fi
-exit
+chown 600 /home/$username/.ssh/authorized-keys/id_rsa.pub
 if [[ grep -Fxq "#PermitRootLogin yes" /etc/ssh/sshd_config ]]
 then
   sed -i "s/#PermitRootLogin yes/PermitRootLogin no/I" /etc/ssh/sshd_config
