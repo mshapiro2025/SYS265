@@ -5,21 +5,28 @@
 # removes roots ability to ssh in
 
 read -p "Input the username for your new SSH user: " username
-useradd -m $username
-mkdir /home/$username/.ssh
-mkdir /home/$username/.ssh/authorized_keys
-chmod 700 /home/$username/.ssh
-chmod 600 /home/$username/.ssh/authorized_keys
-chown -R $username:$username /home/$username/.ssh
+useradd -m -s /bin/bash $username
+#mkdir /home/$username/.ssh
+#chmod 700 /home/$username/.ssh
+#chmod 600 /home/$username/.ssh/authorized_keys
+#chown -R $username:$username /home/$username/.ssh
 if  [[ !  -f "/home/shapiro/SYS265/linux/public-keys/id_rsa.pub" ]]
 then
   git pull
-  cp /home/shapiro/SYS265/linux/public-keys/id_rsa.pub /home/$username/.ssh/authorized_keys/id_rsa.pub
+  mkdir /home/$username/.ssh
+  cp /home/shapiro/SYS265/linux/public-keys/id_rsa.pub /home/$username/.ssh/authorized_keys
+  chmod 700 /home/$username/.ssh
+  chmod 600 /home/$username/.ssh/authorized_keys
+  chown -R $username:$username /home/$username/.ssh
 else
-  cp /home/shapiro/SYS265/linux/public-keys/id_rsa.pub /home/$username/.ssh/authorized_keys/id_rsa.pub
+  mkdir /home/$username/.ssh
+  cp /home/shapiro/SYS265/linux/public-keys/id_rsa.pub /home/$username/.ssh/authorized_keys
+  chmod 700 /home/$username/.ssh
+  chmod 600 /home/$username/.ssh/authorized_keys
+  chown -R $username:$username /home/$username/.ssh
 fi
-chmod 600 /home/$username/.ssh/authorized_keys/id_rsa.pub
-chown $username:$username /home/$username/.ssh/authorized_keys/id_rsa.pub
+#chmod 600 /home/$username/.ssh/authorized_keys/id_rsa.pub
+#chown $username:$username /home/$username/.ssh/authorized_keys/id_rsa.pub
 if grep -Fx "#PermitRootLogin yes" /etc/ssh/sshd_config
 then
   sed -i "s/#PermitRootLogin yes/PermitRootLogin no/I" /etc/ssh/sshd_config
