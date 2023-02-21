@@ -7,8 +7,10 @@
 read -p "Input the username for your new SSH user: " username
 read -p "Enter the password for your new SSH user: " password
 useradd -m $username
-mkdir /home/$username/.ssh
-mkdir /home/$username/.ssh/authorized-keys
+cd /home/$username
+mkdir .ssh
+cd .ssh
+mkdir authorized-keys
 chmod 700 /home/$username/.ssh
 chmod 600 /home/$username/.ssh/authorized_keys
 chown -R $username:$username /home/$username/.ssh
