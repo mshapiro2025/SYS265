@@ -5,12 +5,13 @@
 # removes roots ability to ssh in
 
 read -p "Input the username for your new SSH user: " username
-if grep $username /etc/passwd
+
+if grep -F $username /etc/passwd
 then
-  useradd -m -s /bin/bash $username
-else
   echo "Sorry, that username is already taken. Try again!"
   read -p "Input the username for your new SSH user: " username
+  useradd -m -s /bin/bash $username
+else
   useradd -m -s /bin/bash $username
 fi
 
