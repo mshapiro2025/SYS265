@@ -15,13 +15,12 @@ if  [[ !  -f "/home/shapiro/SYS265/linux/public-keys/id_rsa.pub" ]]
 then
   git pull
 else
-  cp /home/shapiro/SYS265/linux/public-keys/id_rsa.pub /home/$username/.ssh/authorized_keys
+  cp /home/shapiro/SYS265/linux/public-keys/id_rsa.pub /home/$username/.ssh/authorized_keys/id_rsa.pub
 fi
 exit
-if grep -Fxq "#PermitRootLogin yes" /etc/ssh/sshd_config
+if [[ grep -Fxq "#PermitRootLogin yes" /etc/ssh/sshd_config ]]
 then
   sed -i "s/#PermitRootLogin yes/PermitRootLogin no" /etc/ssh/sshd_config
-elif grep -Fxq "PermitRootLogin yes" /etc/ssh/sshd_config
-then
-  sed -i "s/PermitRootLogin yes/PermitRootLogin no" /etc/ssh/sshd_config
+  systemctl restart sshd
+else
 fi
