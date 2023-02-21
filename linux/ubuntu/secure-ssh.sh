@@ -14,7 +14,7 @@ chmod 600 /home/$username/.ssh/authorized_keys
 chown -R $username:$username /home/$username/.ssh
 if  [[ !  -f "/public-keys/id_rsa.pub" ]]
 then
-  git clone https://github.com/mshapiro2025/SYS265/public-keys
+  git clone https://github.com/mshapiro2025/sys265/public-keys
 fi
 exit
 if grep -Fxq "#PermitRootLogin yes" /etc/ssh/sshd_config
@@ -24,4 +24,3 @@ elif grep -Fxq "PermitRootLogin yes" /etc/ssh/sshd_config
 then
   sed -i "s/PermitRootLogin yes/PermitRootLogin no" /etc/ssh/sshd_config
 fi
-
