@@ -6,6 +6,7 @@
 
 read -p "Input the username for your new SSH user: " username
 if grep $username /etc/passwd
+then
   useradd -m -s /bin/bash $username
 else
   echo "Sorry, that username is already taken. Try again!"
