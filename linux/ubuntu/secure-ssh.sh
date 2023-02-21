@@ -11,7 +11,7 @@ mkdir /home/$username/.ssh/authorized-keys
 chmod 700 /home/$username/.ssh
 chmod 600 /home/$username/.ssh/authorized-keys
 chown -R $username:$username /home/$username/.ssh
-if  [[ !  -f "/home/shapiro/SYS265/public-keys/id_rsa.pub" ]]
+if  [[ !  -f "/home/shapiro/SYS265/linux/public-keys/id_rsa.pub" ]]
 then
   git pull
 else
