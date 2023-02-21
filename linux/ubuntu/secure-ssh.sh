@@ -14,6 +14,7 @@ chown -R $username:$username /home/$username/.ssh
 if  [[ !  -f "/home/shapiro/SYS265/linux/public-keys/id_rsa.pub" ]]
 then
   git pull
+  cp /home/shapiro/SYS265/linux/public-keys/id_rsa.pub /home/$username/.ssh/authorized-keys/id_rsa.pub
 else
   cp /home/shapiro/SYS265/linux/public-keys/id_rsa.pub /home/$username/.ssh/authorized-keys/id_rsa.pub
 fi
