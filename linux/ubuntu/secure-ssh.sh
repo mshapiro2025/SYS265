@@ -9,7 +9,7 @@ useradd -m $username
 mkdir /home/$username/.ssh
 mkdir /home/$username/.ssh/authorized-keys
 chmod 700 /home/$username/.ssh
-chmod 600 /home/$username/.ssh/authorized_keys
+chmod 600 /home/$username/.ssh/authorized-keys
 chown -R $username:$username /home/$username/.ssh
 if  [[ !  -f "/home/shapiro/SYS265/public-keys/id_rsa.pub" ]]
 then
