@@ -1,0 +1,9 @@
+[wordpress]
+ansible01-molly
+[webmin]
+ansible02-molly
+[windows]
+wks01-molly
+mgmt01-molly
+[windows:vars]
+ansible_shell_type=powershell
