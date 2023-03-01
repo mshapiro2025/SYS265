@@ -1,0 +1,18 @@
+- name: wordpress full
+  hosts: wordpress
+  vars:
+    firewalld_enable: true
+  roles:
+  - acandid.mariadb_apache_wordpress
+    firewalld:
+      port: 80/tcp
+      permanent: true
+      state: enabled
+  - name: firewall https
+    firewalld:
+      port: 443/tcp
+      permanent: true
+      state: enabled
+    handlers:
+      - name: restart firewall
+        service: name=firewalld state=restarted
