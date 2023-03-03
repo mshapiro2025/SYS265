@@ -4,6 +4,8 @@
     firewalld_enable: true
   roles:
   - acandid.mariadb_apache_wordpress
+  tasks:
+  - name: firewall http
     firewalld:
       port: 80/tcp
       permanent: true
